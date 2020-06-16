@@ -26,7 +26,7 @@ public class MainDialog extends javax.swing.JDialog {
 
     private static final String PATH = new File("").getAbsolutePath();
     private static final String FILENAME = "timpaul";
-    private static final String URL_JAR = "https://github.com/Bunnyspa/GFChipCalc/releases/latest/download/GFChipCalc.jar";
+    private static final String URL_JAR = "https://github.com/timpaulseo/timpaulseo.github.io/releases/latest/download/timpaul.jar";
 
     /**
      * Creates new form MainDialog
