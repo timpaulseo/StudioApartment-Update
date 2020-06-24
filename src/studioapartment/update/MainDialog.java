@@ -47,7 +47,7 @@ public class MainDialog extends javax.swing.JDialog {
 
     private void download() {
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(URL_JAR).openStream());
-                FileOutputStream fileOS = new FileOutputStream(FILENAME+".download")) {
+                FileOutputStream fileOS = new FileOutputStream(FILENAME + ".download")) {
             byte data[] = new byte[1024];
             int byteContent;
             while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
@@ -63,15 +63,15 @@ public class MainDialog extends javax.swing.JDialog {
             openWeb(this);
             return;
         }
-        new File(FILENAME+".jar").delete();
-        new File(FILENAME+".download").renameTo(new File(FILENAME+".jar"));
+        new File(FILENAME + ".jar").delete();
+        new File(FILENAME + ".download").renameTo(new File(FILENAME + ".jar"));
         runProgram();
     }
 
     private static void runProgram() {
         try {
-            String exePath = PATH + "\\"+FILENAME+".jar";
-            ProcessBuilder process = new ProcessBuilder("java", "-jar", exePath);
+            String exePath = PATH + "\\" + FILENAME + ".jar";
+            ProcessBuilder process = new ProcessBuilder(".\\jre\\bin\\java.exe", "-jar", exePath);
             process.directory(new File(PATH + "\\"));
             process.start();
         } catch (IOException ex) {
@@ -140,7 +140,7 @@ public class MainDialog extends javax.swing.JDialog {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_cancelButtonActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aLabel;
     private javax.swing.JButton cancelButton;
