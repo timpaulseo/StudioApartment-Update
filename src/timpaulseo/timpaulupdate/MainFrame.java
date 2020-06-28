@@ -3,40 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studioapartment.update;
+package timpaulseo.timpaulupdate;
 
-import java.awt.Component;
-import java.awt.Desktop;
+import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bunnyspa
  */
-public class MainDialog extends javax.swing.JDialog {
+public class MainFrame extends javax.swing.JFrame {
 
     private static final String PATH = new File("").getAbsolutePath();
     private static final String FILENAME = "timpaul";
     private static final String URL_JAR = "https://github.com/timpaulseo/timpaulseo.github.io/releases/latest/download/timpaul.jar";
+    private final Image favicon = new ImageIcon(getClass().getResource("/resources/favicon.png")).getImage();
 
     /**
      * Creates new form MainDialog
      */
-    public MainDialog() {
+    public MainFrame() {
         initComponents();
-        setCenter();
+        // System.out.println(getClass().getResource("/resources/favicon.png"));
+        init();
     }
 
-    private void setCenter() {
+    private void init() {
+        setIconImage(favicon);
         setLocationRelativeTo(null);
     }
 
@@ -54,13 +55,10 @@ public class MainDialog extends javax.swing.JDialog {
                 fileOS.write(data, 0, byteContent);
             }
         } catch (IOException e) {
-            int retval = JOptionPane.showConfirmDialog(this,
-                    "An error has occurred while downloading. Would you like to visit the webpage instead?",
-                    "Error", JOptionPane.YES_NO_OPTION);
-            if (retval == JOptionPane.NO_OPTION) {
-                System.exit(0);
-            }
-            openWeb(this);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    "다운로드중 오류가 발생했습니다.",
+                    "오류", JOptionPane.ERROR_MESSAGE);
             return;
         }
         new File(FILENAME + ".jar").delete();
@@ -75,20 +73,19 @@ public class MainDialog extends javax.swing.JDialog {
             process.directory(new File(PATH + "\\"));
             process.start();
         } catch (IOException ex) {
-            Logger.getLogger(MainDialog.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private static void openWeb(Component c) {
-        try {
-            Desktop.getDesktop().browse(new URI(URL_JAR));
-        } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(c,
-                    "An error has occurred while downloading.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
+//    private static void openWeb(Component c) {
+//        try {
+//            Desktop.getDesktop().browse(new URI(URL_JAR));
+//        } catch (IOException | URISyntaxException ex) {
+//            JOptionPane.showMessageDialog(c,
+//                    "다운로드중 오류가 발생했습니다.",
+//                    "오류", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,9 +99,12 @@ public class MainDialog extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("팀폴 업데이트");
 
-        aLabel.setText("Downloading timpaul.jar");
-        aLabel.setPreferredSize(new java.awt.Dimension(500, 16));
+        aLabel.setFont(aLabel.getFont().deriveFont(aLabel.getFont().getSize()+13f));
+        aLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aLabel.setText("업데이트중....");
+        aLabel.setPreferredSize(new java.awt.Dimension(300, 16));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class MainDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(aLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
                 .addContainerGap())
@@ -128,10 +128,10 @@ public class MainDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studioapartment.update;
+package timpaulseo.timpaulupdate;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -26,7 +26,7 @@ public class App {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
         }
-        MainDialog dialog = new MainDialog();
+        MainFrame dialog = new MainFrame();
         dialog.setVisible(true);
         dialog.start();
     }
