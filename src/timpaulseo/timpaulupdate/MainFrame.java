@@ -49,10 +49,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void download() {
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(URL_JAR).openStream());
                 FileOutputStream fileOS = new FileOutputStream(FILENAME + ".download")) {
-            byte data[] = new byte[1024];
+            byte data[] = new byte[4096];
             int byteContent;
-            while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
+            while ((byteContent = inputStream.read(data, 0, 4096)) != -1) {
                 fileOS.write(data, 0, byteContent);
+                fileOS.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
