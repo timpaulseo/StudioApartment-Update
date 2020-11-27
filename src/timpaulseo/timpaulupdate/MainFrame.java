@@ -24,7 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private static final String PATH = new File("").getAbsolutePath();
     private static final String FILENAME = "timpaul";
-    private static final String URL_JAR = "https://github.com/timpaulseo/timpaulseo.github.io/releases/latest/download/timpaul.jar";
+    private static final String URL_JAR = "https://github.com/timpaulseo/timpaulseo.github.io/releases/latest/download/" + FILENAME + ".jar";
     private final Image favicon = new ImageIcon(getClass().getResource("/resources/favicon.png")).getImage();
 
     /**
